@@ -6,6 +6,9 @@ import numpy as np
 import tensorflow as tf
 import tqdm
 from sklearn.metrics import *
+
+import _pickle as cPickle
+
 import cPickle as pkl
 
 import sys
@@ -131,7 +134,7 @@ class AMTA():
 
     def train_one_epoch(self):
         num_examples = traindata_size
-        print num_examples
+        print (num_examples)
         total_loss = []
         total_loss_0 = []
         total_loss_1 = []
@@ -187,7 +190,7 @@ class AMTA():
         print("Loss\tLoss_0\tLoss_1\tLoss_2\tAUC")
         f_log.write("Loss\tLoss_0\tLoss_1\tLoss_2\tAUC\n")
         for epoch in range(self.epochs):
-            print '-' * 30, 'Train epoch: %d' % epoch, '-' * 30
+            print ('-' * 30, 'Train epoch: %d' % epoch, '-' * 30)
             start_time = time.time()
             f_log.write("Train epoch {}".format(epoch))
             print("Training...")
@@ -213,7 +216,7 @@ class AMTA():
 
     def test(self, epoch=0):
         num_examples = testdata_size
-        print num_examples
+        print (num_examples)
         total_loss = []
         total_loss_0 = []
         total_loss_1 = []
@@ -339,7 +342,7 @@ class AMTA():
                         v = attribution[j][i]
                         attr[j] += v
 
-        print attr
+        print (attr)
 
 
 f_log = open("log_AMTA.txt", 'w')
@@ -467,7 +470,7 @@ elif len(sys.argv) == 1:
     learning_rate = 1e-4
     batchsize = 1000
 else:
-    print 'usage: python AMTA.py [learning rate] [batch size]'
+    print( 'usage: python AMTA.py [learning rate] [batch size]')
     exit(1)
 f_train = open(train_path)
 f_test = open(test_path)
